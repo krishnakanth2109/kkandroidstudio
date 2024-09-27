@@ -1,0 +1,9 @@
+<h1>Registered Patients</h1>
+<ul>
+  <% @patients.each do |patient| %>
+    <li><%= patient.first_name %> <%= patient.last_name %></li>
+  <% end %>
+</ul>
+
+<h2>Patient Registrations vs Days</h2>
+<%= line_chart @patients_by_day %>

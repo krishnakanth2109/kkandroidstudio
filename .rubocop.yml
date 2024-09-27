@@ -1,0 +1,19 @@
+# Omakase Ruby styling for Rails
+inherit_gem: { rubocop-rails-omakase: rubocop.yml }
+
+# Overwrite or add rules to create your own house style
+#
+# # Use `[a, [b, c]]` not `[ a, [ b, c ] ]`
+# Layout/SpaceInsideArrayLiteralBrackets:
+#   Enabled: false
+class User < ApplicationRecord
+  enum role: { receptionist: 0, doctor: 1 }
+end
+before_action :authenticate_user!
+before_action :check_receptionist_role, only: [:new, :create, :edit, :update, :destroy]
+
+private
+
+def check_receptionist_role
+  redirect_to root_path, alert: 'Not authorized' unless current_user.receptionist?
+end
