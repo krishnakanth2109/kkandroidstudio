@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdOptimizer with Advanced Analytics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">AdOptimizer 🚀</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('home')">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('about')">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('login')">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('signup')">Signup</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('contact')">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+</nav>
+
+<div class="container my-5">
+    <h1>AdOptimizer with Advanced Analytics</h1>
+      <!-- About Us Section -->
+      <section id="about" class="section hidden">
+        <h1>About Us</h1>
+        <p>We are a company dedicated to providing the best services for our users.</p>
+        <div class="about-images">
+            <img src="1.png" alt="Team at Work">
+            <img src="2.jpg" alt="Company Office">
+            <img src="3.jpg" alt="Our Mission">
+        </div>
+    </section>
+
+    <!-- Login Section -->
+    <section id="login" class="section hidden">
+        <h1>Login</h1>
+        <form>
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+            
+            <button type="submit">Login</button>
+        </form>
+    </section>
+
+    <!-- Signup Section -->
+    <section id="signup" class="section hidden">
+        <h1>Signup</h1>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+            
+            <button type="submit">Signup</button>
+        </form>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section hidden">
+        <h1>Contact Us</h1>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            
+            <label for="message">Message:</label>
+            <textarea id="message" required></textarea>
+            
+            <button type="submit">Send</button>
+        </form>
+    </section>
+    <form id="adForm">
+        <div class="mb-3">
+            <button id="darkModeToggle">🌙 Dark Mode</button>
+            <label for="adObjective" class="form-label">Ad Objective</label>
+            <select id="adObjective" class="form-select">
+                <option value="brand_awareness">Brand Awareness</option>
+                <option value="website_traffic">Website Traffic</option>
+                <option value="engagement">Engagement</option>
+                <option value="lead_generation">Lead Generation</option>
+                <option value="conversions">Conversions</option>
+            </select>
+        </div>
+        <div class="mb-3">
+        <label for="budget">Select Budget:</label>
+        <select id="budget">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+        </select>
+    </div>
+        <div class="mb-3">
+            <label for="industry" class="form-label">Industry</label>
+            <select id="industry" class="form-select">
+                <option value="ecommerce">E-commerce</option>
+                <option value="healthcare">Healthcare</option>
+                <option value="education">Education</option>
+                <option value="travel">Travel</option>
+                <option value="finance">Finance</option>
+            </select>
+        </div><br>
+        <label for="audience">Select Audience:</label>
+        <select id="audience">
+            <option value="youth">For Youth</option>
+            <option value="general">General</option>
+            <option value="seniors">Senior Citizens</option>
+        </select><br>
+       
+        <div id="preview"></div>
+    </section>
+
+        <div class="mb-3">
+            <label for="platform" class="form-label">Platform</label>
+            <select id="platform" class="form-select">
+                <option value="linkedin">LinkedIn</option>
+                <option value="google_ads">Google Ads</option>
+                <option value="pinterest">Pinterest</option>
+                <option value="meta">Meta</option>
+            </select>
+        </div>
+        
+  
+        <div class="mb-3">
+            <label for="imageURL" class="form-label">Image URL</label><br><br>
+            <input type="url" id="imageURL" class="form-control" placeholder="Enter Image URL" required>
+            <label for="imageUpload">Upload an Image:</label><br>
+            <input type="file" id="imageUpload" accept="image/*"></div>
+        <button type="button" onclick="analyzeAd()" class="btn btn-primary">Analyze Ad</button>
+    </form>
+
+    <div class="loader" id="loading">Fetching analysis...</div>
+
+    <div id="result" class="hidden analysis-section">
+        <h2>Performance Score</h2>
+        <p id="score" class="fs-3 fw-bold"></p>
+
+        <!-- Image Preview -->
+        <div class="mb-4">
+            <h3>Image Preview</h3>
+            <img id="imagePreview" src="" alt="Ad Image Preview" class="img-fluid">
+        </div>
+
+        <h3>Detailed Analysis</h3>
+        <ul id="detailedAnalysis" class="list-group">
+            <li class="list-group-item">Ad Objective: <span id="adObjectiveResult"></span></li>
+            <li class="list-group-item">Industry: <span id="industryResult"></span></li>
+            <li class="list-group-item">Platform: <span id="platformResult"></span></li>
+            <li class="list-group-item">Image Description: <span id="imageDescription"></span></li>
+        </ul>
+
+        <h3>Alignment with Ad Objective</h3>
+        <p id="alignment"></p>
+
+        <h3>What's Missing</h3>
+        <p id="missing"></p>
+
+        <h3>Additional Image Instructions</h3>
+        <p id="instructions"></p>
+
+        <h3>Advanced Analytics</h3>
+        <ul id="advancedAnalytics" class="list-group">
+            <li class="list-group-item">Ad Budget Recommendation: <span id="budgetRecommendation"></span></li>
+            <li class="list-group-item">Aspect Ratio & Resolution: <span id="aspectRatio"></span></li>
+            <li class="list-group-item">Ad Fatigue: <span id="adFatigue"></span></li>
+            <li class="list-group-item">CPM Trend: <span id="cpmTrend"></span></li>
+            <li class="list-group-item">CTR: <span id="ctr"></span> <span class="benchmark">(Benchmark: <span id="ctrBenchmark"></span>)</span></li>
+            <li class="list-group-item">CPM: <span id="cpm"></span> <span class="benchmark">(Benchmark: <span id="cpmBenchmark"></span>)</span></li>
+            <li class="list-group-item">CVR: <span id="cvr"></span> <span class="benchmark">(Benchmark: <span id="cvrBenchmark"></span>)</span></li>
+            <li class="list-group-item">Thumb Stop Ratio: <span id="thumbStopRatio"></span> <span class="benchmark">(Benchmark: <span id="thumbStopRatioBenchmark"></span>)</span></li>
+            <li class="list-group-item">ROAS: <span id="roas"></span> <span class="benchmark">(Benchmark: <span id="roasBenchmark"></span>)</span></li>
+        </ul>
+
+        <h3>Additional Metrics</h3>
+        <ul id="additionalMetrics" class="list-group">
+            <li class="list-group-item">Engagement Rate: <span id="engagementRate"></span></li>
+            <li class="list-group-item">Cost Per Click (CPC): <span id="cpc"></span></li>
+            <li class="list-group-item">Conversion Value: <span id="conversionValue"></span></li>
+            <li class="list-group-item">Ad Frequency: <span id="adFrequency"></span></li>
+            <li class="list-group-item">Ad Reach: <span id="adReach"></span></li>
+        </ul>
+    </div>
+</div>
+<footer class="navbar navbar-expand-lg navbar-dark bg-primary text-white text-center py-3 mt-5">
+    <div class="container d-flex flex-column align-items-center">
+        <p class="mb-2">&copy; 2024 AdOptimizer. All Rights Reserved.</p>
+
+        <p class="mb-2">
+            <a href="#" onclick="showSection('about')" class="text-white">About Us</a> |
+            <a href="#" onclick="showSection('contact')" class="text-white">Contact</a> |
+            <a href="#" class="text-white">Privacy Policy</a> |
+            <a href="#" class="text-white">Terms of Service</a>
+        </p>
+
+        <p class="mb-0">Follow us on:</p>
+        <div>
+            <a href="https://www.facebook.com" class="text-white mx-2"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.x.com" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com" class="text-white mx-2"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com" class="text-white mx-2"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </div>
+</footer>
+
+<script src="index.js"></script>
+</body>
+</html>
